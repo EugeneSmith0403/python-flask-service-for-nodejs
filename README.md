@@ -6,4 +6,4 @@ Flask Service. This app communicate with nodejs-api-without-frameworks by Rabbit
  python3 flask run
 ```
 
-Integration service with nodejs-api-without-frameworks by RabbitMq and save recieved data in Sqlite database
+Integration service comminucates with https://github.com/EugeneSmith0403/nodejs-api-without-frameworks by RabbitMq and save recieved data in Sqlite database
