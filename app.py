@@ -10,7 +10,6 @@ from rabbitMq.index import RabbitMq
 from routes.MetaData import MetaDataRoutes
 from routes.User import UserRoutes
 
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
@@ -27,4 +26,9 @@ api.add_resource(MetaDataRoutes, '/metaData')
 def createSecondThread():
     RabbitMq().init()
 
-Thread(target=createSecondThread).start()
+
+thread = Thread(target=createSecondThread)
+thread.start()
+
+if __name__ == "__main__":
+    thread.close()
