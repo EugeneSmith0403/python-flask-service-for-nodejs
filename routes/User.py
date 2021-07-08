@@ -14,15 +14,12 @@ class UserRoutes(Resource):
     def post(self):
         json_data = request.get_json()
         dictionary = dict(json_data)
-        dictionary.setdefault('metaData', '')
-        dictionary.setdefault('lastName', '')
-        dictionary.setdefault('name', '')
 
         user = UserModel(
-            email=dictionary['email'],
-            name=dictionary['name'],
-            lastName=dictionary['lastName'],
-            metaData=dictionary['metaData'],
+            email=dictionary.get('email', ''),
+            name=dictionary.get('name', ''),
+            lastName=dictionary.get('lastName', ''),
+            metaData=dictionary.get('metaData', ''),
         )
         db.session.add(user)
         db.session.commit()

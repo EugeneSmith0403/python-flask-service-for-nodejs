@@ -15,16 +15,12 @@ class MetaDataRoutes(Resource):
     def post(self):
         json_data = request.get_json()
         dictionary = dict(json_data)
-        dictionary.setdefault('project', '')
-        dictionary.setdefault('website', '')
-        dictionary.setdefault('facebook', '')
-        dictionary.setdefault('instagram', '')
 
         data = MetaDataModel(
-            project=dictionary['project'],
-            website=dictionary['website'],
-            facebook=dictionary['facebook'],
-            instagram=dictionary['instagram']
+            project=dictionary.get('project', ''),
+            website=dictionary.get('website', ''),
+            facebook=dictionary.get('facebook', ''),
+            instagram=dictionary.get('instagram', '')
         )
         db.session.add(data)
         db.session.commit()
